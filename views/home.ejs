@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= locals.title %></title>
+  </head>
+  <link rel="stylesheet" href="/css/home.css" />
+  <body>
+    <header>
+      <h1>TODO App</h1>
+      <hr />
+    </header>
+    <form action="/create" method="post">
+      <div class="one">
+        <label>DESCRIPTION</label>
+        <br />
+        <input
+          type="text"
+          name="description"
+          placeholder="What do you need to do?"
+          required />
+      </div>
+      <hr />
+      <div class="two">
+        <div>
+          <label>CATEGORY</label>
+          <br />
+          <select name="category" required>
+            <option value="">Choose a category</option>
+            <option value="Personal">Personal</option>
+            <option value="Work">Work</option>
+            <option value="School">School</option>
+            <option value="Office">Office</option>
+            <option value="Cleaning">Cleaning</option>
+            <option value="Others">Others</option>
+          </select>
+        </div>
+        <div>
+          <label>DUE DATE</label>
+          <br />
+          <input
+            type="date"
+            name="date"
+            min="2020-01-01"
+            max="2022-12-31"
+            required />
+          <input type="submit" value="Create" />
+        </div>
+      </div>
+    </form>
+    <form action="/delete" method="POST">
+      <input type="submit" value="Delete" />
+      <br />
+      <% for(let i of tasks) {%>
+      <input type="checkbox" name="check" value="<%=i._id%>" />
+      <p><%=i.description%></p>
+      <h2><%=i.category%></h2>
+      <p>Due Date - <%=i.date%></p>
+      <% } %>
+    </form>
+  </body>
+</html>
